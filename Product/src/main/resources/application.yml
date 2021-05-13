@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: product-service
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  datasource:
+    username: springuser
+    password: ganga123
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ganga_product
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 0

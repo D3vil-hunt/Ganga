@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>com.ganga.product.entity.Product</class-a>
+        <class-b>com.ganga.product.product_util.ProductDto</class-b>
+        <field>
+            <a>todaysDeal.discount</a>
+            <b>discount</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>com.ganga.product.entity.TodaysDeal</class-a>
+        <class-b>com.ganga.product.deals.DealsDto</class-b>
+        <field>
+            <a>product.id</a>
+            <b>productId</b>
+        </field>
+        <field>
+            <a>product.id</a>
+            <b>productId</b>
+        </field>
+        <field>
+            <a>product.displayName</a>
+            <b>displayName</b>
+        </field>
+        <field>
+            <a>product.shortDescription</a>
+            <b>shortDescription</b>
+        </field>
+        <field>
+            <a>product.category</a>
+            <b>category</b>
+        </field>
+    </mapping>
+</mappings>
