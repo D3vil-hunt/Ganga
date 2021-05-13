@@ -1,19 +1,27 @@
+admin:
+  username: superadmin
+  password: superadmin
+  status: Y
+
+server:
+  port: 0
+
+
 spring:
   application:
-    name: product-service
+    name: admin-service
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
 
+
   datasource:
     username: springuser
     password: ganga123
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ganga_product
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ganga_admin_service
     driver-class-name: com.mysql.cj.jdbc.Driver
-server:
-  port: 0
 
 eureka:
   instance:
