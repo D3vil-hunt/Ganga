@@ -26,7 +26,6 @@ public class ApplicationStartup {
 
      @Bean
     public CommandLineRunner loadData(){
-         System.out.println("--------------Hi from admin--------------");
         return (args) -> {
             List<Admin> admins = (List<Admin>) adminRepository.findAll();
             if(ObjectUtils.isEmpty(admins)){
