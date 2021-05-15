@@ -1,4 +1,4 @@
-package com.ganga.adminservice.dto;
+package com.ganga.gateway.dto;
 
 import lombok.Data;
 

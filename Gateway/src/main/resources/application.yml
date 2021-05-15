@@ -18,3 +18,8 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+
+jwt:
+  secretKey: QnuQblQWn8H9ggiwfGbCxpPA3gdY1oAe
+  key: QnuQblQWn8H9ggiwfGbCxpPA3gdY1oAe
+  validityInMilliseconds: 1200000
