@@ -1,9 +1,12 @@
 package com.ganga.product.recommendation;
 
-import com.ganga.product.entity.Recommendation;
+import com.ganga.product.product_util.ProductDto;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RecommendationService {
-    public List<RecommendationDto> getRecommendation();
+    void addRecommendation(RecommendationDto dto);
+    Set<String> getRecommendationForPurchasedProductsOfPastThirtyDays();
+    List<ProductDto> getRecommendedProducts();
 }

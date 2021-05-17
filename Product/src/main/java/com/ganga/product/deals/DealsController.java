@@ -24,4 +24,5 @@ public class DealsController {
     public List<DealsDto> getTodaysDeals(){
         return dealsService.getTodaysDeal();
     }
+
 }

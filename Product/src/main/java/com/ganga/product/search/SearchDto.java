@@ -20,10 +20,12 @@ public class SearchDto {
     @NotNull
     private String category;
     @NotNull
-    private String price;
+    private Integer price;
     @NotNull
-    private String discount;
+    private Integer discount;
     @NotNull
     private String deliveryCharge;
     private Set<Review> reviews;
+    private String image;
+    private Integer offerPrice;
 }

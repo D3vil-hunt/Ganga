@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: login-service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+
+server:
+  port: 0
+
+jwt:
+  secretKey: QnuQblQWn8H9ggiwfGbCxpPA3gdY1oAe
+  key: QnuQblQWn8H9ggiwfGbCxpPA3gdY1oAe
+  validityInMilliseconds: 1200000

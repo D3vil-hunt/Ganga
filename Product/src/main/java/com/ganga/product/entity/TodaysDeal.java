@@ -23,4 +23,12 @@ public class TodaysDeal {
     public String toString(){
         return String.format("id= %d, discount= %d, Product= %s",id,discount,product.toString());
     }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
 }

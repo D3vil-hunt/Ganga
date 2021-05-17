@@ -9,4 +9,6 @@ public interface ProductUtilityService {
     void addProduct(ProductDto product);
 
     List<ProductDto> getAllProducts();
+
+    ProductDto getProductByID(Long id);
 }
