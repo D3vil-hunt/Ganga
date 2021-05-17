@@ -35,5 +35,9 @@
             <a>product.category</a>
             <b>category</b>
         </field>
+        <field>
+            <a>product.image</a>
+            <b>image</b>
+        </field>
     </mapping>
 </mappings>

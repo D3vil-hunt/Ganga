@@ -25,6 +25,7 @@ public class Product {
     private  Integer deliveryCharge;
     private  Integer sellerCount;
     private  Float avgRating;
+    private String image;
     @ToString.Exclude
     @OneToOne( targetEntity = TodaysDeal.class ,cascade = CascadeType.ALL)
     @JoinColumn(name = "deal_id")
@@ -32,7 +33,5 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Set<Review> reviews = new HashSet<>();
-
-
 
 }

@@ -7,6 +7,8 @@ import com.ganga.adminservice.dto.UserLoginDetailsDTO;
 import com.ganga.adminservice.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,8 +30,14 @@ public class controller {
     }
 
     @PostMapping(consumes = "application/json", value = "/register")
-    public void registerUser(@Valid @RequestBody RegisterUserDto registerUserDto){
-        adminService.registerUser(registerUserDto);
+    public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterUserDto registerUserDto){
+        try{
+            adminService.registerUser(registerUserDto);
+            return new ResponseEntity<>("Success", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("User already exists.", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PostMapping(consumes = "application/json", value = "/update/{userName}")

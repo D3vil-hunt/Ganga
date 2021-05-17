@@ -9,10 +9,15 @@ import com.ganga.adminservice.entity.Admin;
 import com.ganga.adminservice.util.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.Mapper;
+import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -28,28 +33,31 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void registerUser(RegisterUserDto registerUserDto) {
+    public void registerUser(RegisterUserDto registerUserDto) throws NonUniqueResultException, IllegalArgumentException {
         mapper = utility.getDozerBeanMapper();
+        Optional<Admin> optional = Optional.ofNullable(adminRepository.findByUsername(registerUserDto.getUserName()));
+        if(optional.isPresent()){
+            throw new IllegalArgumentException("User already exists");
+        }
+        registerUserDto.setPassword(BCrypt.hashpw(registerUserDto.getPassword(), BCrypt.gensalt()));
         Admin user = mapper.map(registerUserDto, Admin.class);
         user.setLoginAttempt(0);
         user.setRoles(Arrays.asList("ROLE_USER"));
+        user.setStatus('Y');
         adminRepository.save(user);
     }
 
     @Override
     public void updateUser(UpdateUserDto updateUserDto, String userName) throws IllegalArgumentException {
-        Admin oldUserDetails = adminRepository.findByUsername(userName);
-        if(oldUserDetails == null){
+        Admin user = adminRepository.findByUsername(userName);
+        if(user == null){
             throw new IllegalArgumentException("Provided user doesn't exists");
         }
-        mapper = utility.getDozerBeanMapper();
-        Admin user = mapper.map(updateUserDto, Admin.class);
-        user.setStatus(oldUserDetails.getStatus());
-        user.setRoles(oldUserDetails.getRoles());
-        user.setLoginAttempt(oldUserDetails.getLoginAttempt());
-        user.setUsername(oldUserDetails.getUsername());
-        if (user.getPassword() == null){
-            user.setPassword(oldUserDetails.getPassword());
+        if(updateUserDto.getPassword() != null){
+            user.setPassword(BCrypt.hashpw(updateUserDto.getPassword(), BCrypt.gensalt()));
+        }
+        if(updateUserDto.getEmailAddress() != null){
+            user.setEmailAddress(updateUserDto.getEmailAddress());
         }
         adminRepository.save(user);
     }

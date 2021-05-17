@@ -1,5 +1,6 @@
 package com.ganga.product.util;
 
+import com.ganga.product.search.SearchDto;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -62,5 +63,23 @@ public class ProductUtilServiceImpl implements ProductUtilityService {
                 })
                 .collect(Collectors.toList());
         return list;
+    }
+    public ProductDto getProductByID(Long id){
+        Mapper mapper = util.getDozerBeanMapper("dozer_mapping.xml");
+        Optional<Product> optional = productUtilityRepository.findById(id);
+        if(optional.isPresent()){
+            ProductDto dto = mapper.map(optional.get(), ProductDto.class);
+            if(dto.getDiscount() != null){
+                dto.setOfferPrice(
+                        (int) ( (100 - dto.getDiscount()) * 0.01 * dto.getPrice() )
+                );
+                return dto;
+            }else{
+                dto.setDiscount(0);
+                dto.setOfferPrice(0);
+            }
+            return dto;
+        }
+        return null;
     }
 }

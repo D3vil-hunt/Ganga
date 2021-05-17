@@ -1,8 +1,10 @@
 package com.ganga.product.product_util;
 
+import com.ganga.product.entity.Review;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 public class ProductDto {
@@ -27,5 +29,7 @@ public class ProductDto {
     @NotNull
     private  Integer sellerCount;
     @NotNull
-    private  String avgRating;
+    private  Float avgRating;
+    private  String image;
+    private Set<Review> reviews;
 }

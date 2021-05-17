@@ -10,5 +10,6 @@ public class DealsDto {
     private  String displayName;
     private  String shortDescription;
     private  String category;
+    private String image;
 
 }
